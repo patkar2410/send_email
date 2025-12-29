@@ -35,5 +35,11 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['tick.ico'],
+    icon=['tick.icns'],
+)
+app = BUNDLE(
+    exe,
+    name='BatchEmailSender.app',
+    icon='tick.icns',
+    bundle_identifier=None,
 )

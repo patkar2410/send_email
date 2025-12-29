@@ -6,7 +6,7 @@ A robust desktop application built with Python and PySide6 (Qt) for automating t
 
 - **User-Friendly GUI**: Clean and intuitive interface built with PySide6.
 - **Batch Processing**: Automatically scans a selected directory and processes all files.
-- **File Management**: Successfully sent files are automatically moved to a `SENT` subdirectory.
+- **File Management**: Successfully sent files are automatically moved to a `SENTEMAILS` subdirectory.
 - **SMTP Configuration**: Support for custom SMTP servers (Gmail, Outlook, custom domains) with TLS/SSL support.
 - **Secure Storage**: Sensitive credentials (passwords) are handled securely using encryption.
 - **Resilience**: Built-in retry mechanism (using `tenacity`) for handling network glitches or temporary SMTP errors.

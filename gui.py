@@ -162,8 +162,19 @@ class EmailWorker(QThread):
             
             try:
                 email_sender.send_email(self.recipient_email, file_path)
+
+                # Move file to SENTEMAILS folder
+                current_dir = os.path.dirname(file_path)
+                sent_dir = os.path.join(current_dir, "SENTEMAILS")
+                
+                if not os.path.exists(sent_dir):
+                    os.makedirs(sent_dir)
+                    
+                new_path = os.path.join(sent_dir, filename)
+                shutil.move(file_path, new_path)
+                
                 self.logger_manager.log_delivery_status(filename, self.recipient_email, True)
-                self.log_signal.emit(f"SUCCESS: Sent {filename}")
+                self.log_signal.emit(f"SUCCESS: Sent {filename} and moved to SENTEMAILS folder")
                 self.status_signal.emit(filename, "SENT")
             except Exception as e:
                 error_msg = str(e)
@@ -307,6 +318,15 @@ class MainWindow(QMainWindow):
             log_path = self.logger_manager.create_audit_log([os.path.basename(f) for f in self.file_list])
             self.log_viewer.append(f"Audit Log created: {log_path}")
             
+            # Ensure SENTEMAILS folder exists immediately upon selection
+            sent_dir = os.path.join(directory, "SENTEMAILS")
+            if not os.path.exists(sent_dir):
+                try:
+                    os.makedirs(sent_dir)
+                    self.log_viewer.append(f"Created SENTEMAILS folder at: {sent_dir}")
+                except Exception as e:
+                    self.log_viewer.append(f"Warning: Could not create SENTEMAILS folder: {e}")
+
             self.send_btn.setEnabled(True)
             
         except Exception as e:
