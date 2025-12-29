@@ -1,0 +1,3 @@
+([('BatchEmailSender',
+   '/Users/arvindpatkar/Documents/send_email/dist/BatchEmailSender',
+   'EXECUTABLE')],)

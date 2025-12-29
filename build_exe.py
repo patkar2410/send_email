@@ -18,12 +18,12 @@ def build():
     # Check for icon
     icon_file = None
     if sys.platform == 'darwin':
-        if os.path.exists('app_icon.icns'):
-            icon_file = 'app_icon.icns'
+        if os.path.exists('tick.icns'):
+            icon_file = 'tick.icns'
     
     # Fallback or Windows/Linux
-    if not icon_file and os.path.exists('app_icon.ico'):
-        icon_file = 'app_icon.ico'
+    if not icon_file and os.path.exists('tick.ico'):
+        icon_file = 'tick.ico'
         
     if icon_file:
         print(f"Using icon: {icon_file}")
