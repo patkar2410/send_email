@@ -1,5 +1,6 @@
 import sys
 import os
+import shutil
 import logging
 import smtplib
 from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
